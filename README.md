@@ -44,7 +44,7 @@ Up to version 0.6 the integration was part of the repository `Thomas1607Haja/Rez
 3. Add this repository (button above), download **Rezeptplaner 0.7.0**.
 4. Restart Home Assistant.
 
-Do not swap steps 2 and 3: removing the old entry after downloading would delete the freshly installed files again.
+Do not swap steps 2 and 3: removing the old entry after downloading would delete the freshly installed files again. Detailed guide with checks (German): [docs/UMSTIEG.md](docs/UMSTIEG.md).
 
 ## Languages
 

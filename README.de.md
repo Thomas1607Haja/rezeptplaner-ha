@@ -44,7 +44,7 @@ Bis Version 0.6 lag die Integration im Repository `Thomas1607Haja/Rezepteverwalt
 3. Dieses Repository hinzufügen (Knopf oben), **Rezeptplaner 0.7.0** herunterladen.
 4. Home Assistant neu starten.
 
-Schritt 2 und 3 nicht vertauschen: Wer den alten Eintrag erst nach dem Herunterladen entfernt, löscht damit die frisch installierten Dateien wieder.
+Schritt 2 und 3 nicht vertauschen: Wer den alten Eintrag erst nach dem Herunterladen entfernt, löscht damit die frisch installierten Dateien wieder. Ausführliche Anleitung mit Prüfpunkten: [docs/UMSTIEG.md](docs/UMSTIEG.md).
 
 ## Sprachen
 
