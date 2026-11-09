@@ -4,6 +4,10 @@
   "after_dependencies": [
     "hassio"
   ],
+  "categories": [
+    "appliances_cleaning.cooking",
+    "productivity_information.calendars_todos"
+  ],
   "codeowners": [
     "@Thomas1607Haja"
   ],
