@@ -1,0 +1,22 @@
+{
+  "domain": "rezeptplaner",
+  "name": "Rezeptplaner",
+  "after_dependencies": [
+    "hassio"
+  ],
+  "codeowners": [
+    "@Thomas1607Haja"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "frontend",
+    "http",
+    "lovelace"
+  ],
+  "documentation": "https://github.com/Thomas1607Haja/rezeptplaner-ha",
+  "integration_type": "service",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/Thomas1607Haja/rezeptplaner-ha/issues",
+  "requirements": [],
+  "version": "0.7.0"
+}

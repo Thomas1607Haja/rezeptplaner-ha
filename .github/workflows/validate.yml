@@ -1,0 +1,82 @@
+# Prüft die Integration bei jedem Push, Pull Request und einmal täglich:
+# - Übersetzungen (gleiche Schlüssel und Platzhalter in allen Sprachen)
+# - hassfest (Prüfung von Home Assistant)
+# - HACS-Action (Voraussetzungen für HACS und dessen Standardliste)
+#
+# Release: Tag v1.2.3 pushen. Der Tag muss zu "version" in
+# custom_components/rezeptplaner/manifest.json passen. Das GitHub-Release
+# entsteht nur, wenn alle Prüfungen grün sind; den Text liefert der
+# passende Abschnitt aus CHANGELOG.md.
+name: Validate
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  schedule:
+    - cron: "23 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Übersetzungen und Manifest prüfen
+        run: python3 -m unittest discover -s tests -v
+      - name: Python-Dateien kompilieren
+        run: python3 -m compileall -q custom_components
+
+  hassfest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: home-assistant/actions/hassfest@master
+
+  hacs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hacs/action@main
+        with:
+          category: integration
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [tests, hassfest, hacs]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - name: Version prüfen
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          manifest=$(python3 -c 'import json; print(json.load(open("custom_components/rezeptplaner/manifest.json"))["version"])')
+          if [ "$version" != "$manifest" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME passt nicht zu manifest.json ($manifest)"
+            exit 1
+          fi
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+      - name: Release-Text aus CHANGELOG.md
+        run: |
+          awk -v v="$VERSION" '
+            $0 == "## " v { on = 1; next }
+            on && /^## / { exit }
+            on { print }
+          ' CHANGELOG.md > "$RUNNER_TEMP/notes.md"
+          if ! grep -q '[^[:space:]]' "$RUNNER_TEMP/notes.md"; then
+            echo "::error::CHANGELOG.md hat keinen Abschnitt \"## $VERSION\""
+            exit 1
+          fi
+      - name: GitHub-Release veröffentlichen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --latest \
+            --title "Rezeptplaner $VERSION" \
+            --notes-file "$RUNNER_TEMP/notes.md"
