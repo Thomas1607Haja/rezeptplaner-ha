@@ -8,15 +8,21 @@ Home Assistant integration and dashboard card for [Rezeptplaner](https://github.
 - **Calendar** “Meal plan” with every planned dish
 - **Sensor** “Today” (e.g. for an announcement “Today we're having …”)
 
-The integration needs the **Rezeptplaner app** in Home Assistant. Install it first: Settings → Apps → App store → ⋮ → Repositories, add `https://github.com/Thomas1607Haja/Rezepteverwaltung_Essenplan` and install “Rezeptplaner”.
+The integration needs the **Rezeptplaner app** in Home Assistant. Install it first:
+
+[![Open your Home Assistant instance and show the Rezeptplaner app (adds the repository if needed).](https://my.home-assistant.io/badges/supervisor_app.svg)](https://my.home-assistant.io/redirect/supervisor_app/?app=45a92d34_rezeptplaner&repository_url=https%3A%2F%2Fgithub.com%2FThomas1607Haja%2FRezepteverwaltung_Essenplan)
+
+If the app doesn't show up, add the repository under Settings → Apps → App store → ⋮ → Repositories: `https://github.com/Thomas1607Haja/Rezepteverwaltung_Essenplan`.
 
 ## Installation via HACS
 
-[![Open your Home Assistant instance and open this repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Thomas1607Haja&repository=rezeptplaner-ha&category=integration)
+[![Open your Home Assistant instance and open this repository in the Marketplace.](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=Thomas1607Haja&repository=rezeptplaner-ha&category=integration)
 
-1. Click the button above – or in **HACS → ⋮ → Custom repositories** add `https://github.com/Thomas1607Haja/rezeptplaner-ha` with type **Integration**.
+1. Click the button above – or under **Settings → Marketplace → Add from link** enter `Thomas1607Haja/rezeptplaner-ha`. Before Home Assistant 2026.11 the button opens HACS; there use **HACS → ⋮ → Custom repositories** with type **Integration**.
 2. Download **Rezeptplaner** and restart Home Assistant.
-3. Under **Settings → Devices & services**, “Rezeptplaner” appears as **Discovered** – click **Add** and confirm. The app provides address and key itself.
+3. Under **Settings → Devices & services**, “Rezeptplaner” appears as **Discovered** – click **Add** and confirm. Or start the setup here:
+
+   [![Open your Home Assistant instance and start setting up the Rezeptplaner integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=rezeptplaner) The app provides address and key itself.
 4. Reload the page once (F5), then add a **Meal plan** card to a dashboard (from the card picker or as `type: custom:rezeptplaner-card`).
 
 The integration registers the card as a dashboard resource itself (Settings → Dashboards → ⋮ → Resources) and keeps the entry up to date. If your resources are maintained in YAML (`lovelace: resource_mode: yaml`), add an entry with `url: /rezeptplaner_static/rezeptplaner-card.js` and `type: module`; until then the integration loads the card via the start page as a fallback.

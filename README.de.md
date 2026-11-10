@@ -8,15 +8,21 @@ Integration und Dashboard-Karte für den [Rezeptplaner](https://github.com/Thoma
 - **Kalender** „Essensplan“ mit allen geplanten Gerichten
 - **Sensor** „Heute“ (z. B. für eine Ansage „Heute gibt es …“)
 
-Voraussetzung ist die **Rezeptplaner-App** in Home Assistant. Zuerst installieren: Einstellungen → Apps → App-Store → ⋮ → Repositories, `https://github.com/Thomas1607Haja/Rezepteverwaltung_Essenplan` hinzufügen und „Rezeptplaner“ installieren.
+Voraussetzung ist die **Rezeptplaner-App** in Home Assistant. Zuerst installieren:
+
+[![Home Assistant öffnen und die Rezeptplaner-App anzeigen (fügt bei Bedarf das Repository hinzu).](https://my.home-assistant.io/badges/supervisor_app.svg)](https://my.home-assistant.io/redirect/supervisor_app/?app=45a92d34_rezeptplaner&repository_url=https%3A%2F%2Fgithub.com%2FThomas1607Haja%2FRezepteverwaltung_Essenplan)
+
+Erscheint die App nicht, das Repository unter Einstellungen → Apps → App-Store → ⋮ → Repositories hinzufügen: `https://github.com/Thomas1607Haja/Rezepteverwaltung_Essenplan`.
 
 ## Installation über HACS
 
-[![Home Assistant öffnen und dieses Repository in HACS anzeigen.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Thomas1607Haja&repository=rezeptplaner-ha&category=integration)
+[![Home Assistant öffnen und dieses Repository im Marketplace anzeigen.](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=Thomas1607Haja&repository=rezeptplaner-ha&category=integration)
 
-1. Auf den Knopf oben klicken – oder in **HACS → ⋮ → Benutzerdefinierte Repositories** `https://github.com/Thomas1607Haja/rezeptplaner-ha` mit Typ **Integration** hinzufügen.
+1. Auf den Button oben klicken – oder unter **Einstellungen → Marketplace → Add from link** `Thomas1607Haja/rezeptplaner-ha` eintragen. Vor Home Assistant 2026.11 öffnet der Button HACS; dort **HACS → ⋮ → Benutzerdefinierte Repositories** mit Typ **Integration**.
 2. **Rezeptplaner** herunterladen und Home Assistant neu starten.
-3. Unter **Einstellungen → Geräte & Dienste** erscheint „Rezeptplaner“ als **Entdeckt** – auf **Hinzufügen** klicken und bestätigen. Adresse und Schlüssel liefert die App selbst.
+3. Unter **Einstellungen → Geräte & Dienste** erscheint „Rezeptplaner“ als **Entdeckt** – auf **Hinzufügen** klicken und bestätigen. Adresse und Schlüssel liefert die App selbst. Oder die Einrichtung hier starten:
+
+   [![Home Assistant öffnen und die Einrichtung der Rezeptplaner-Integration starten.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=rezeptplaner)
 4. Die Seite einmal neu laden (F5), dann im Dashboard eine Karte **Essensplan** hinzufügen (in der Kartenauswahl oder als `type: custom:rezeptplaner-card`).
 
 Die Integration trägt die Karte selbst als Dashboard-Ressource ein (Einstellungen → Dashboards → ⋮ → Ressourcen) und hält den Eintrag bei Updates aktuell. Werden die Ressourcen in YAML gepflegt (`lovelace: resource_mode: yaml`), dort einen Eintrag mit `url: /rezeptplaner_static/rezeptplaner-card.js` und `type: module` ergänzen; bis dahin lädt die Integration die Karte ersatzweise über die Startseite.

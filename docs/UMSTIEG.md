@@ -6,6 +6,14 @@ Für alle, die die Integration bis Version 0.6 aus
 Entitäts-IDs (`calendar.rezeptplaner_essensplan`, `sensor.rezeptplaner_heute`),
 Automationen und Dashboard-Karten bleiben erhalten.
 
+**Ab Home Assistant 2026.11** heißt HACS **Marketplace** (Einstellungen →
+Marketplace) und hat beim ersten Start alle Einträge aus HACS übernommen. Die
+Reihenfolge der Schritte bleibt gleich, nur die Menüs heißen anders:
+„Entfernen“ ist ⋮ → **Uninstall**, das neue Repository kommt über **Add from
+link** hinzu, und das alte Repository entfernst du aus der Liste der
+benutzerdefinierten Repositories
+([direkt öffnen](https://my.home-assistant.io/redirect/marketplace_repositories/)).
+
 ## 0. Backup
 
 1. **Einstellungen → System → Backups → Backup erstellen** (vollständig, mit
@@ -36,7 +44,7 @@ Automationen und Dashboard-Karten bleiben erhalten.
 ## 3. Neues Repository hinzufügen und 0.7.0 installieren
 
 1. Diesen Link öffnen und „Öffnen“ bestätigen:
-   https://my.home-assistant.io/redirect/hacs_repository/?owner=Thomas1607Haja&repository=rezeptplaner-ha&category=integration
+   https://my.home-assistant.io/redirect/marketplace_repository/?owner=Thomas1607Haja&repository=rezeptplaner-ha&category=integration
 
    Alternativ: **HACS → ⋮ → Benutzerdefinierte Repositories**, Adresse
    `https://github.com/Thomas1607Haja/rezeptplaner-ha`, Typ **Integration**,
